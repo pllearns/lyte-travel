@@ -1,0 +1,30 @@
+CREATE TABLE cities (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(255)
+);
+
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY,
+  username VARCHAR(255) UNIQUE NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  image VARCHAR(255),
+  join_date TIMESTAMP(6) DEFAULT now(),
+  city_id INTEGER REFERENCES cities
+);
+
+CREATE TABLE posts (
+  id SERIAL PRIMARY KEY,
+  title VARCHAR(255) NOT NULL, 
+  user_id INTEGER REFERENCES users,
+  city_id INTEGER REFERENCES cities, 
+  content TEXT
+);
+
+
+CREATE TABLE "session" (
+  "sid" VARCHAR NOT NULL COLLATE "default",
+  "sess" json NOT NULL,
+  "expire" TIMESTAMP(6)
+)
+WITH (OIDS=FALSE);
+ALTER TABLE "session" ADD CONSTRAINT "session_pkey" PRIMARY KEY ("sid") NOT DEFERRABLE INITIALLY IMMEDIATE;

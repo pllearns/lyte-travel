@@ -1,0 +1,20 @@
+{
+  "production": {
+    "driver": "pg",
+    "user": {},
+    "password": {},
+    "database": {},
+    "port": {}
+  },
+  "development": {
+    "driver": "pg",
+    "database": "lyte_travel_development",
+    "port": "5432"
+  },
+  "test": {
+    "driver": "pg",
+    "database": "lyte_travel_test",
+    "port": "5432"
+  },
+  "sql-file": true
+}
