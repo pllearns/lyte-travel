@@ -2,6 +2,19 @@
 
 const express = require('express');
 const app = express();
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const routes = require('./server/routes');
+const config = require('./config').getConfig();
+
+app.set('view engine', 'ejs');
+app.set('views', __dirname + '/views');
+
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
+app.use(express.static('public'));
+app.use(cookieParser());
 
 const port = process.env.PORT || 3000;
 
